@@ -1,11 +1,11 @@
 #if os(Linux)
 
 import XCTest
-@testable import FluentMySQLTests
+@testable import VaporMongoTests
 
 XCTMain([
-    testCase(MySQLTests.allTests),
-    testCase(MySQLDriverTests.allTests),
+    testCase(DriverTests.allTests),
+    testCase(ProviderTests.allTests),
 ])
 
 #endif
