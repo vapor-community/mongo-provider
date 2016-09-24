@@ -13,12 +13,10 @@ import Fluent
     - port: 27017
 */
 class DriverTests: XCTestCase {
-    static var allTests : [(String, (DriverTests) -> () throws -> Void)] {
-        return [
-            ("testConnectFailing", testConnectFailing),
-            ("testSaveClearFind", testSaveClearFind),
-        ]
-    }
+    static var allTests = [
+        ("testConnectFailing", testConnectFailing),
+        ("testSaveClearFind", testSaveClearFind),
+    ]
     
     var database: Fluent.Database!
     var driver: MongoDriver!

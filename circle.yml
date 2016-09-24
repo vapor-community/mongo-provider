@@ -1,0 +1,4 @@
+test:
+  override:
+    - "mongo --eval \"db.createUser({user: 'test', pwd: 'test', roles: []})\""    
+    - eval "$(curl -sL swift.vapor.sh/ci)"
