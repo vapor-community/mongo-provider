@@ -25,19 +25,38 @@ sudo apt-get install mongo
 mongod
 ```
 
-## Use in Vapor
+## Provider
 
-When setting up your droplet, create a database using a MongoDriver instance and pass it into the Droplet intializer.
+Add the provider to your Droplet.
 
-```
-let mongo = try MongoDriver(
-	database: "test",
-	user: "user1",
-	password: "pswd1",
-	host: "localhost",
-	port: 27017
-)
-let db = Database(mongo)
-let drop = Droplet(database: db)
+```swift
+import Vapor
+import VaporMongo
+
+let drop = Droplet(providers: [VaporMongo.Provider.self])
 ```
 
+## Config
+
+Then add a `mongo.json` to your `Config` folder. You can add it in the root or keep it out of git in the secrets folder.
+
+```
+Config/
+  - mongo.json
+    secrets/
+      - mongo.json
+```
+
+The secrets folder is under the gitignore and shouldn't be committed.
+
+Here's an example `secrets/mongo.json`
+
+```json
+{
+  "user": "username",
+  "password": "badpassword",
+  "database": "databasename",
+  "port": "27017", // optional
+  "host": "z99a0.asdf8c8cx.us-east-1.rds.amazonaws.com", // optional
+}
+```
