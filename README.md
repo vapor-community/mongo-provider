@@ -1,3 +1,12 @@
+<p align="center">
+    <img 
+        src="https://thumbsplus.tutsplus.com/uploads/users/1116/posts/24835/preview_image/mongodb-logo.png?height=300&width=300" 
+        align="center" 
+        alt="Mongo"
+        width="300px"
+    >
+</p>
+
 # Mongo Provider
 
 ![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
@@ -68,10 +77,12 @@ Here's an example `secrets/mongo.json`
   "user": "username",
   "password": "badpassword",
   "database": "databasename",
-  "port": "27017", // optional
-  "host": "z99a0.asdf8c8cx.us-east-1.rds.amazonaws.com", // optional
+  "port": "27017",
+  "host": "z99a0.asdf8c8cx.us-east-1.rds.amazonaws.com"
 }
 ```
+
+> Note: `port` and `host` are optional.
 
 ### Manual
 
