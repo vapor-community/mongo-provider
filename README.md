@@ -54,7 +54,8 @@ Add the provider to your Droplet.
 import Vapor
 import VaporMongo
 
-let drop = Droplet(providers: [VaporMongo.Provider.self])
+let drop = Droplet()
+try drop.addProvider(VaporMongo.Provider.self)
 ```
 
 ### Config
@@ -92,9 +93,10 @@ You can also manually configure the provider in code. This will bypass the confi
 import Vapor
 import VaporMongo
 
-let mongo = VaporMongo.Provider(user: ..., password: ...)
+let drop = Droplet()
 
-let drop = Droplet(initializedProviders: [mongo])
+let mongo = try VaporMongo.Provider(database: ..., user: ..., password: ...)
+drop.addProvider(mongo)
 ```
 
 ## 📖 Documentation
