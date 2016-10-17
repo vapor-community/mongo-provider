@@ -3,14 +3,14 @@ import FluentMongo
 
 public final class Provider: Vapor.Provider {
     /**
-        MySQL database driver created by the provider.
+        Mongo database driver created by the provider.
     */
     public let driver: MongoDriver
 
     /**
-        MySQL database created by the provider.
+        Mongo database created by the provider.
     */
-    public let provided: Providable
+    public let database: Database
 
     public enum Error: Swift.Error {
         case config(String)
@@ -35,8 +35,7 @@ public final class Provider: Vapor.Provider {
             port: port
         )
         self.driver = driver
-        let database = Database(driver)
-        provided = Providable(database: database)
+        self.database = Database(driver)
     }
 
     public convenience init(config: Config) throws {
@@ -66,6 +65,10 @@ public final class Provider: Vapor.Provider {
             host: host,
             port: port
         )
+    }
+    
+    public func boot(_ drop: Droplet) {
+        drop.database = database
     }
 
     public func afterInit(_ drop: Droplet) {
