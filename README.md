@@ -57,6 +57,8 @@ import VaporMongo
 let drop = Droplet()
 try drop.addProvider(VaporMongo.Provider.self)
 ```
+> Note: If on Xcode you get a _No such module ‘VaporMongo’_ error, do a `vapor xcode` command. 
+> If that still doesn’t work do a `vapor clean && vapor xcode` command.
 
 ### Config
 
