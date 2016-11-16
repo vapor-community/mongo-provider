@@ -43,7 +43,7 @@ Now to use Mongo in your Vapor project.
 Add the package to your `Package.swift`.
 
 ```swift
-.Package(url: "https://github.com/vapor/mongo-provider.git", majorVersion: 1, minor: 0)
+.Package(url: "https://github.com/vapor/mongo-provider.git", majorVersion: 1, minor: 1)
 ```
 
 ### Droplet
