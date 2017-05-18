@@ -10,7 +10,7 @@
 # Mongo Provider
 
 ![Swift](http://img.shields.io/badge/swift-3.0-brightgreen.svg)
-[![CircleCI](https://circleci.com/gh/vapor/mongo-provider.svg?style=shield)](https://circleci.com/gh/vapor/mongo-provider)
+[![CircleCI](https://circleci.com/gh/vapor/mongo-provider.svg?style=shield)](https://circleci.com/gh/vapor-community/mongo-provider)
 [![Slack Status](http://vapor.team/badge.svg)](http://vapor.team)
 
 ## ⬇ Install Mongo
