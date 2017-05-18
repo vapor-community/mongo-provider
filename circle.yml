@@ -1,4 +1,14 @@
+machine:
+  services:
+    - mongodb
+dependencies:
+  override:
+    - eval "$(curl -sL https://apt.vapor.sh)"
+    - sudo apt-get install vapor
+    - sudo chmod -R a+rx /usr/
 test:
   override:
     - "mongo --eval \"db.createUser({user: 'test', pwd: 'test', roles: []})\""    
-    - eval "$(curl -sL swift.vapor.sh/ci)"
+    - swift build
+    - swift build -c release
+    - swift test
