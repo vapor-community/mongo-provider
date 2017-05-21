@@ -36,19 +36,56 @@ public final class Provider: Vapor.Provider {
 
 extension MongoDriver: ConfigInitializable {
     public convenience init(config: Config) throws {
+        
         guard let mongo = config["mongo"] else {
             throw ConfigError.missingFile("mongo")
         }
         
-        guard let url = mongo["url"]?.string else {
-            throw ConfigError.missing(
-                key: ["url"],
-                file: "mongo",
-                desiredType: String.self
-            )
+        func buildUrl(mongo: Config) throws -> String {
+            
+            // For type safety, declare all config strings once with enum
+            enum Keys: String {
+                case
+                    user,
+                    password,
+                    database,
+                    port,
+                    host
+            }
+            
+            // Get a valid config value, or throw a related error
+            func configValue(key: String) throws -> String {
+                
+                guard let cValue = mongo[key]?.string else {
+                    throw ConfigError.missing(
+                        key: [key],
+                        file: "mongo",
+                        desiredType: String.self
+                    )
+                }
+                
+                return cValue
+                
+            }
+            
+            let user = try configValue(key: Keys.user.rawValue)
+            let password = try configValue(key: Keys.password.rawValue)
+            let database = try configValue(key: Keys.database.rawValue)
+            let port = try configValue(key: Keys.port.rawValue)
+            let host = try configValue(key: Keys.host.rawValue)
+            
+            // If valid credentials are not specified, don't add the syntax around them
+            let userPasswordComponent =
+                user.characters.count == 0 && password.characters.count == 0
+                    ? ""
+                    : "\(user):\(password)@"
+            
+            return "mongodb://\(userPasswordComponent)\(host):\(port)/\(database)"
         }
         
         let maxConnectionsPerServer = mongo["maxConnectionsPerServer"]?.int ?? 100
+        
+        let url = try buildUrl(mongo: mongo)
         
         try self.init(url, maxConnectionsPerServer: maxConnectionsPerServer)
     }
