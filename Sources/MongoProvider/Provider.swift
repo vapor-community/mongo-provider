@@ -54,9 +54,12 @@ extension MongoDriver: ConfigInitializable {
             }
             
             // Get a valid config value, or throw a related error
-            func configValue(key: String) throws -> String {
+            func configValue(key: String, optional: Bool = false) throws -> String {
                 
                 guard let cValue = mongo[key]?.string else {
+                    
+                    if optional { return "" }
+                    
                     throw ConfigError.missing(
                         key: [key],
                         file: "mongo",
@@ -68,8 +71,8 @@ extension MongoDriver: ConfigInitializable {
                 
             }
             
-            let user = try configValue(key: Keys.user.rawValue)
-            let password = try configValue(key: Keys.password.rawValue)
+            let user = try configValue(key: Keys.user.rawValue, optional: true)
+            let password = try configValue(key: Keys.password.rawValue, optional: true)
             let database = try configValue(key: Keys.database.rawValue)
             let port = try configValue(key: Keys.port.rawValue)
             let host = try configValue(key: Keys.host.rawValue)
