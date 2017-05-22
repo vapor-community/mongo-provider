@@ -13,22 +13,24 @@
 [![CircleCI](https://circleci.com/gh/vapor/mongo-provider.svg?style=shield)](https://circleci.com/gh/vapor-community/mongo-provider)
 [![Slack Status](http://vapor.team/badge.svg)](http://vapor.team)
 
-## ⬇ Install Mongo
+## ⬇ Install the MongoDB server
 
 ### OS X
 
+For more instructions, check out https://docs.mongodb.com/master/administration/install-community/.
+
 ```shell
-brew install mongo
+brew install mongodb
 ```
 
 ### Linux
 
 ```shell
 sudo apt-get update
-sudo apt-get install mongo
+sudo apt-get install mongodb
 ```
 
-### Run
+### Run the server
 
 ```shell
 mongod
@@ -43,7 +45,7 @@ Now to use Mongo in your Vapor project.
 Add the package to your `Package.swift`.
 
 ```swift
-.Package(url: "https://github.com/vapor/mongo-provider.git", majorVersion: 1, minor: 1)
+.Package(url: "https://github.com/vapor/mongo-provider.git", majorVersion: 2)
 ```
 
 ### Droplet
