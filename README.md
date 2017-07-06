@@ -54,13 +54,11 @@ Add the provider to your Droplet.
 
 ```swift
 import Vapor
-import VaporMongo
+import MongoProvider
 
 let drop = Droplet()
-try drop.addProvider(VaporMongo.Provider.self)
+try drop.addProvider(MongoProvider.Provider.self)
 ```
-> Note: If on Xcode you get a _No such module ‘VaporMongo’_ error, do a `vapor xcode` command. 
-> If that still doesn’t work do a `vapor clean && vapor xcode` command.
 
 ### Config
 
@@ -79,11 +77,7 @@ Here's an example `secrets/mongo.json`
 
 ```json
 {
-  "user": "username",
-  "password": "badpassword",
-  "database": "databasename",
-  "port": "27017",
-  "host": "z99a0.asdf8c8cx.us-east-1.rds.amazonaws.com"
+  "url": "mongodb://<db-user>:<db-password>@<host>:<port>/<database>"
 }
 ```
 
@@ -95,11 +89,11 @@ You can also manually configure the provider in code. This will bypass the confi
 
 ```swift
 import Vapor
-import VaporMongo
+import MongoProvider
 
 let drop = Droplet()
 
-let mongo = try VaporMongo.Provider(database: ..., user: ..., password: ...)
+let mongo = try MongoProvider.Provider(database: ..., user: ..., password: ...)
 drop.addProvider(mongo)
 ```
 
