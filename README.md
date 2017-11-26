@@ -60,6 +60,8 @@ let drop = Droplet()
 try drop.addProvider(MongoProvider.Provider.self)
 ```
 
+And configure Fluent to use MongoDB by changing the key `"driver"` to be `"mongo"` inside `Config/fluent.json
+
 ### Config
 
 Then add a `mongo.json` to your `Config` folder. You can add it in the root or keep it out of git in the secrets folder.
