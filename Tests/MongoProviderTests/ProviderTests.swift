@@ -11,7 +11,7 @@ class ProviderTests: XCTestCase {
     func testBasic() throws {
         var config = Config([:])
         try config.set("fluent.driver", "mongo")
-        try config.set("mongo.url", "mongodb://test:test@127.0.0.1/test")
+        try config.set("mongo.url", "mongodb://127.0.0.1/test")
         try config.addProvider(MongoProvider.Provider.self)
         
         let drop = try! Droplet(config)
