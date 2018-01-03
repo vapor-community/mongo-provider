@@ -1,10 +1,9 @@
 #if os(Linux)
 
 import XCTest
-@testable import VaporMongoTests
+@testable import MongoProviderTests
 
 XCTMain([
-    testCase(DriverTests.allTests),
     testCase(ProviderTests.allTests),
 ])
 
